@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import Services from './components/Services';
-import Stats from './components/Stats';
-import Contact from './components/Contact';
-import AIConsultant from './components/AIConsultant';
-import SolarService from './components/pages/SolarService';
-import BESSService from './components/pages/BESSService';
-import TransformerService from './components/pages/TransformerService';
-import InfrastructureService from './components/pages/InfrastructureService';
+import Navbar from './Navbar';
+import Hero from './Hero';
+import Services from './Services';
+import Stats from './Stats';
+import Contact from './Contact';
+import AIConsultant from './AIConsultant';
+import SolarService from './SolarService';
+import BESSService from './BESSService';
+import TransformerService from './TransformerService';
+import InfrastructureService from './InfrastructureService';
 import { ViewState } from './types';
 import { Eye, Database, ChevronUp } from 'lucide-react';
 

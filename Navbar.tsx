@@ -1,7 +1,6 @@
-
 import React, { useState, useEffect } from 'react';
 import { Menu, X, ChevronDown } from 'lucide-react';
-import { ViewState } from '../App';
+import { ViewState } from './types';
 
 const BrandLogo: React.FC<{ onClick: () => void }> = ({ onClick }) => (
   <div className="flex items-center space-x-3 cursor-pointer" onClick={onClick}>
@@ -56,64 +55,33 @@ const Navbar: React.FC<NavbarProps> = ({ currentView, setView }) => {
     window.scrollTo(0, 0);
   };
 
-  const scrollToSection = (id: string) => {
-    if (currentView !== 'home') {
-      setView('home');
-      setTimeout(() => {
-        const el = document.getElementById(id);
-        el?.scrollIntoView({ behavior: 'smooth' });
-      }, 100);
-    } else {
-      const el = document.getElementById(id);
-      el?.scrollIntoView({ behavior: 'smooth' });
-    }
-    setMobileMenuOpen(false);
-  };
-
   return (
     <nav className={`fixed w-full z-50 transition-all duration-500 ${isScrolled || currentView !== 'home' ? 'bg-slate-950/95 backdrop-blur-xl py-3 shadow-2xl border-b border-white/5' : 'bg-transparent py-5'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           <BrandLogo onClick={() => handleNav('home')} />
-
-          {/* Desktop Nav */}
           <div className="hidden md:flex space-x-8 items-center">
-            <button 
-              onClick={() => handleNav('home')}
-              className={`text-xs font-black uppercase tracking-[0.3em] transition-all hover:text-brand-cyan ${currentView === 'home' ? 'text-brand-cyan' : 'text-slate-400'}`}
-            >
-              Home
-            </button>
-            
+            <button onClick={() => handleNav('home')} className={`text-xs font-black uppercase tracking-[0.3em] ${currentView === 'home' ? 'text-brand-cyan' : 'text-slate-400'}`}>Home</button>
             <div className="relative group">
               <button 
                 onMouseEnter={() => setServicesOpen(true)}
-                className={`text-xs font-black uppercase tracking-[0.3em] transition-all flex items-center hover:text-brand-cyan ${currentView !== 'home' ? 'text-brand-cyan' : 'text-slate-400'}`}
+                className={`text-xs font-black uppercase tracking-[0.3em] flex items-center hover:text-brand-cyan ${currentView !== 'home' ? 'text-brand-cyan' : 'text-slate-400'}`}
               >
                 Services <ChevronDown className="ml-1 h-3 w-3" />
               </button>
-              
               <div 
                 onMouseLeave={() => setServicesOpen(false)}
                 className={`absolute top-full -left-4 mt-2 w-56 bg-slate-900 border border-white/10 rounded-2xl shadow-2xl p-4 space-y-2 transition-all duration-300 ${servicesOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'}`}
               >
                 {serviceLinks.map((s) => (
-                  <button 
-                    key={s.view} 
-                    onClick={() => handleNav(s.view)}
-                    className={`block w-full text-left px-4 py-3 rounded-xl text-xs font-black uppercase tracking-widest hover:bg-brand-cyan/10 hover:text-brand-cyan transition-all ${currentView === s.view ? 'text-brand-cyan bg-brand-cyan/5' : 'text-slate-400'}`}
-                  >
+                  <button key={s.view} onClick={() => handleNav(s.view)} className="block w-full text-left px-4 py-3 rounded-xl text-xs font-black uppercase tracking-widest hover:bg-brand-cyan/10 hover:text-brand-cyan transition-all">
                     {s.name}
                   </button>
                 ))}
               </div>
             </div>
-
-            <button onClick={() => scrollToSection('innovation')} className="text-xs font-black uppercase tracking-[0.3em] text-slate-400 hover:text-brand-cyan">Innovation</button>
-            <button onClick={() => scrollToSection('contact')} className="brand-gradient text-slate-950 px-6 py-2 rounded-lg text-xs font-black transition-all shadow-lg shadow-brand-cyan/20 uppercase tracking-widest hover:scale-105 active:scale-95 ml-4">Get Quote</button>
+            <button className="brand-gradient text-slate-950 px-6 py-2 rounded-lg text-xs font-black transition-all shadow-lg shadow-brand-cyan/20 uppercase tracking-widest hover:scale-105 active:scale-95 ml-4">Get Quote</button>
           </div>
-
-          {/* Mobile toggle */}
           <div className="md:hidden">
             <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="text-slate-300 p-2">
               {mobileMenuOpen ? <X /> : <Menu />}
@@ -121,26 +89,6 @@ const Navbar: React.FC<NavbarProps> = ({ currentView, setView }) => {
           </div>
         </div>
       </div>
-
-      {/* Mobile Menu */}
-      {mobileMenuOpen && (
-        <div className="md:hidden bg-slate-900 border-b border-white/10 p-8 space-y-6 shadow-2xl animate-in fade-in slide-in-from-top-4 duration-300">
-          <button onClick={() => handleNav('home')} className="block w-full text-left text-xl font-black uppercase tracking-widest text-slate-300">Home</button>
-          <div className="space-y-4 pt-4 border-t border-white/5">
-            <p className="text-xs font-black text-slate-500 uppercase tracking-widest">Our Solutions</p>
-            {serviceLinks.map((s) => (
-              <button 
-                key={s.view} 
-                onClick={() => handleNav(s.view)}
-                className={`block w-full text-left text-lg font-black uppercase tracking-widest ${currentView === s.view ? 'text-brand-cyan' : 'text-slate-300'}`}
-              >
-                {s.name}
-              </button>
-            ))}
-          </div>
-          <button onClick={() => scrollToSection('contact')} className="w-full brand-gradient py-5 rounded-2xl text-slate-950 font-black uppercase tracking-widest shadow-xl mt-6">Get Quote</button>
-        </div>
-      )}
     </nav>
   );
 };
