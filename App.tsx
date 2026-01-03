@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -10,9 +9,8 @@ import SolarService from './components/pages/SolarService';
 import BESSService from './components/pages/BESSService';
 import TransformerService from './components/pages/TransformerService';
 import InfrastructureService from './components/pages/InfrastructureService';
-import { Eye, FileSearch, Database, ArrowRight, ChevronUp } from 'lucide-react';
-
-export type ViewState = 'home' | 'solar' | 'bess' | 'transformer' | 'infrastructure';
+import { ViewState } from './types';
+import { Eye, Database, ChevronUp } from 'lucide-react';
 
 const InnovationSection: React.FC = () => (
   <section id="innovation" className="py-32 bg-slate-900 overflow-hidden relative border-y border-white/5">
@@ -56,23 +54,6 @@ const InnovationSection: React.FC = () => (
               <h5 className="text-white font-black uppercase tracking-tight text-xl">High-Fidelity Mining</h5>
               <p className="text-slate-500 text-base font-medium leading-relaxed">Every cell, every inverter health point. We capture what others ignore.</p>
             </div>
-            <div className="space-y-4 col-span-full">
-              <div className="glass-morphism p-8 rounded-3xl border-l-[6px] border-brand-cyan relative overflow-hidden group">
-                <div className="absolute inset-0 bg-brand-cyan/5 translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
-                <div className="relative z-10">
-                  <div className="flex items-center space-x-4 mb-6">
-                    <FileSearch className="h-8 w-8 text-brand-cyan" />
-                    <h5 className="text-2xl text-white font-black tracking-tight uppercase">Transparent Detailed Reporting</h5>
-                  </div>
-                  <p className="text-slate-400 text-lg leading-relaxed font-medium mb-8">
-                    We synthesize millions of raw data points into interactive reports. You see exactly what our technicians see—no obfuscation, total visibility.
-                  </p>
-                  <button className="flex items-center text-brand-cyan text-xs font-black uppercase tracking-widest group">
-                    Explore Sample Report <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </button>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -96,10 +77,6 @@ const HomeView: React.FC<{ setView: (v: ViewState) => void }> = ({ setView }) =>
                 alt="Technician working" 
                 className="rounded-[40px] shadow-2xl border border-white/10"
               />
-              <div className="absolute -top-10 -right-10 bg-slate-900 border border-brand-cyan/30 p-8 rounded-3xl shadow-2xl hidden md:block">
-                <div className="text-brand-cyan font-black text-5xl tracking-tighter mb-1">ZERO</div>
-                <div className="text-slate-400 text-xs font-black uppercase tracking-[0.3em]">Incident Safety</div>
-              </div>
             </div>
           </div>
           <div className="lg:w-1/2">
@@ -108,22 +85,6 @@ const HomeView: React.FC<{ setView: (v: ViewState) => void }> = ({ setView }) =>
             <p className="text-slate-400 text-xl leading-relaxed mb-10 font-medium">
               At MW Energy, we don't just "check" equipment. We audit energy ecosystems using high-fidelity field data captured via AI-integrated hardware.
             </p>
-            <div className="space-y-5">
-              {[
-                "AI Glass Assisted Field Audits",
-                "Total Transparency Detailed Reports",
-                "Certified HV/Substation Specialists",
-                "Fleet Performance Benchmarking",
-                "Zero-Harm Safety Mandate"
-              ].map((text, i) => (
-                <div key={i} className="flex items-center space-x-4 text-slate-200 font-bold uppercase text-xs tracking-[0.2em] group">
-                  <div className="h-6 w-6 rounded-full bg-brand-cyan/10 flex items-center justify-center border border-brand-cyan/20 group-hover:bg-brand-cyan/30 transition-colors">
-                    <div className="h-1.5 w-1.5 rounded-full brand-gradient"></div>
-                  </div>
-                  <span>{text}</span>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </div>
@@ -168,17 +129,8 @@ const App: React.FC = () => {
       </main>
 
       <footer className="py-20 bg-slate-950 border-t border-white/5">
-        <div className="container mx-auto px-4 text-center">
-          <div className="flex flex-col md:flex-row justify-between items-center text-slate-600 text-xs font-black uppercase tracking-[0.3em]">
-            <div className="mb-8 md:mb-0">
-              © {new Date().getFullYear()} MW Energy Solutions. Powering Global Infrastructure.
-            </div>
-            <div className="flex space-x-12">
-              <a href="#" className="hover:text-brand-cyan transition-colors">Safety Standard</a>
-              <a href="#" className="hover:text-brand-cyan transition-colors">Terms</a>
-              <a href="#" className="hover:text-brand-cyan transition-colors">Privacy</a>
-            </div>
-          </div>
+        <div className="container mx-auto px-4 text-center text-slate-600 text-xs font-black uppercase tracking-[0.3em]">
+          © {new Date().getFullYear()} MW Energy Solutions. Powering Global Infrastructure.
         </div>
       </footer>
 
@@ -187,7 +139,7 @@ const App: React.FC = () => {
       {showTopBtn && (
         <button 
           onClick={scrollToTop}
-          className="fixed bottom-32 right-8 z-50 p-4 bg-slate-900 border border-white/10 text-brand-cyan rounded-2xl shadow-2xl hover:bg-brand-cyan hover:text-slate-950 transition-all animate-in fade-in slide-in-from-bottom-4 duration-300"
+          className="fixed bottom-32 right-8 z-50 p-4 bg-slate-900 border border-white/10 text-brand-cyan rounded-2xl shadow-2xl hover:bg-brand-cyan hover:text-slate-950 transition-all"
         >
           <ChevronUp className="h-6 w-6" />
         </button>
