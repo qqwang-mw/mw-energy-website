@@ -1,0 +1,7 @@
+{
+  "name": "MW Energy - Modern O&M Solutions",
+  "description": "A world-class professional web application for MW Energy, specializing in O&M for Solar, BESS, and electrical infrastructure. Features AI-powered energy consultation and a high-performance design.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
