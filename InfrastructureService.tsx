@@ -2,7 +2,8 @@
 import React from 'react';
 import { Factory, Construction, ShieldCheck, Activity, CheckCircle, Network, HardHat, FileText } from 'lucide-react';
 import Contact from '../Contact';
-import { ViewState } from '../../App';
+// Fixed import path for ViewState from App to types
+import { ViewState } from '../../types';
 
 const InfrastructureService: React.FC<{ setView: (v: ViewState) => void }> = ({ setView }) => {
   return (

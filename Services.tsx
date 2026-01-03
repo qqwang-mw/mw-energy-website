@@ -1,7 +1,8 @@
 
 import React from 'react';
 import { Sun, Battery, Zap, Factory, ArrowRight, Shield, Activity, BarChart3, Eye, HardHat } from 'lucide-react';
-import { ViewState } from '../App';
+// Fixed import path for ViewState from App to types
+import { ViewState } from '../types';
 
 interface ServiceOverview {
   id: ViewState;

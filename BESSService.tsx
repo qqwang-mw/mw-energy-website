@@ -2,7 +2,8 @@
 import React from 'react';
 import { Battery, ShieldAlert, Thermometer, Cpu, CheckCircle, Zap, ShieldCheck, Activity, Search, Gauge, Box, Settings, HardHat, FileCheck, Layers } from 'lucide-react';
 import Contact from '../Contact';
-import { ViewState } from '../../App';
+// Fixed import path for ViewState from App to types
+import { ViewState } from '../../types';
 
 const BESSService: React.FC<{ setView: (v: ViewState) => void }> = ({ setView }) => {
   return (

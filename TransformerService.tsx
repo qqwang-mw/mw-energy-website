@@ -2,7 +2,8 @@
 import React from 'react';
 import { Zap, Activity, Microscope, Droplets, CheckCircle, AlertTriangle, Settings, ShieldCheck, Factory, HardHat, FileText, Beaker, ZapOff, RefreshCcw, Waves, Shield, Thermometer, FlaskConical, ClipboardCheck } from 'lucide-react';
 import Contact from '../Contact';
-import { ViewState } from '../../App';
+// Fixed import path for ViewState from App to types
+import { ViewState } from '../../types';
 
 const TransformerService: React.FC<{ setView: (v: ViewState) => void }> = ({ setView }) => {
   return (
